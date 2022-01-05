@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FCVIdBugDemo</string>
+    <string name="req_dynamic_feature">Fetch Dynamic Feature</string>
+    <string name="title_dynamicfeature">Dynamic Feature Module</string>
+</resources>
