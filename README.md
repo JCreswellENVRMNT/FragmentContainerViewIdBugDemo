@@ -1,7 +1,10 @@
 # FragmentContainerViewIdBugDemo
 minimal reproduce project demonstrating an apparent bug in FragmentContainerView's id check logic in the context of a dynamic feature module
 
-# Characteristic stack trace
+# Problem
+FragmentContainerView inflation from XML can fail citing a missing android:id, but the XML source has an ID specified.
+
+## Characteristic stack trace
 ```
 2022-01-04 18:15:14.139 29700-29700/com.example.fcvidbugdemo E/AndroidRuntime: FATAL EXCEPTION: main
     Process: com.example.fcvidbugdemo, PID: 29700
@@ -14,6 +17,19 @@ minimal reproduce project demonstrating an apparent bug in FragmentContainerView
         at androidx.fragment.app.FragmentContainerView.<init>(FragmentContainerView.java:171)
         at androidx.fragment.app.FragmentLayoutInflaterFactory.onCreateView(FragmentLayoutInflaterFactory.java:52)
         ...
+```
+
+## XML Source
+```
+<androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_host_view"
+        android:name="com.example.dynamicfeature.DynamicFeatureFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 ```
 
 # Cause
